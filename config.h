@@ -1787,7 +1787,7 @@
 #ifdef _PATH_SSH_PROGRAM
 #undef _PATH_SSH_PROGRAM
 #endif
-#define _PATH_SSH_PROGRAM "/system/bin/sftp"
+#define _PATH_SSH_PROGRAM "/system/bin/ssh"
 
 #define HAVE_FLOCK 1
 #define HAVE_BZERO 1
