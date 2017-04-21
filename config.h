@@ -1777,7 +1777,7 @@
 #ifdef SSHDIR
 #undef SSHDIR
 #endif
-#define SSHDIR "/var/run/ssh"
+#define SSHDIR "/data/ssh"
 
 #ifdef _PATH_PRIVSEP_CHROOT_DIR
 #undef _PATH_PRIVSEP_CHROOT_DIR
