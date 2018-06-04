@@ -5,13 +5,22 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := optional
 
+XMSS_SRC_FILES := \
+    ssh-xmss.c \
+    sshkey-xmss.c \
+    xmss_commons.c \
+    xmss_fast.c \
+    xmss_hash.c \
+    xmss_hash_address.c \
+    xmss_wots.c
+
 LOCAL_SRC_FILES := \
+    $(XMSS_SRC_FILES) \
     addrmatch.c \
     atomicio.c \
     authfd.c \
     authfile.c \
     bitmap.c \
-    blocks.c \
     bufaux.c \
     bufbn.c \
     bufec.c \
@@ -27,7 +36,6 @@ LOCAL_SRC_FILES := \
     cleanup.c \
     compat.c \
     crc32.c \
-    deattack.c \
     dh.c \
     digest-openssl.c \
     dispatch.c \
@@ -55,7 +63,6 @@ LOCAL_SRC_FILES := \
     log.c \
     mac.c \
     match.c \
-    md-sha256.c \
     misc.c \
     moduli.c \
     monitor_fdpass.c \
@@ -66,20 +73,26 @@ LOCAL_SRC_FILES := \
     openbsd-compat/bindresvport.c \
     openbsd-compat/blowfish.c \
     openbsd-compat/bsd-closefrom.c \
+    openbsd-compat/bsd-flock.c \
+    openbsd-compat/bsd-getpagesize.c \
     openbsd-compat/bsd-getpeereid.c \
+    openbsd-compat/bsd-malloc.c \
     openbsd-compat/bsd-misc.c \
     openbsd-compat/bsd-openpty.c \
+    openbsd-compat/bsd-signal.c \
     openbsd-compat/bsd-statvfs.c \
     openbsd-compat/explicit_bzero.c \
     openbsd-compat/fmt_scaled.c \
+    openbsd-compat/freezero.c \
     openbsd-compat/getopt_long.c \
     openbsd-compat/glob.c \
     openbsd-compat/openssl-compat.c \
     openbsd-compat/port-linux.c \
-    openbsd-compat/port-tun.c \
+    openbsd-compat/port-net.c \
     openbsd-compat/pwcache.c \
     openbsd-compat/readpassphrase.c \
     openbsd-compat/reallocarray.c \
+    openbsd-compat/recallocarray.c \
     openbsd-compat/rresvport.c \
     openbsd-compat/setproctitle.c \
     openbsd-compat/strmode.c \
@@ -87,24 +100,24 @@ LOCAL_SRC_FILES := \
     openbsd-compat/timingsafe_bcmp.c \
     openbsd-compat/vis.c \
     packet.c \
+    platform-misc.c \
     platform-pledge.c \
     platform-tracing.c \
     poly1305.c \
     readpass.c \
     rijndael.c \
-    rsa.c \
     sc25519.c \
     smult_curve25519_ref.c \
-    ssh-dss.c \
-    ssh-ecdsa.c \
-    ssh-ed25519.c \
-    ssh-rsa.c \
+    sshbuf.c \
     sshbuf-getput-basic.c \
     sshbuf-getput-crypto.c \
     sshbuf-misc.c \
-    sshbuf.c \
+    ssh-dss.c \
+    ssh-ecdsa.c \
+    ssh-ed25519.c \
     ssherr.c \
     sshkey.c \
+    ssh-rsa.c \
     ttymodes.c \
     uidswap.c \
     umac.c \
@@ -144,7 +157,7 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := \
     ssh.c readconf.c clientloop.c sshtty.c \
-    sshconnect.c sshconnect1.c sshconnect2.c mux.c
+    sshconnect.c sshconnect2.c mux.c
 
 LOCAL_MODULE := ssh
 

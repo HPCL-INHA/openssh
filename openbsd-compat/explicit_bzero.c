@@ -27,7 +27,7 @@ explicit_bzero(void *p, size_t n)
 
 #else /* HAVE_MEMSET_S */
 
-#if defined(ANDROID) && defined(bzero)
+#if defined(ANDROID) && defined(HAVE_BZERO)
 /* On some Android versions bzero is a macro */
 static void wrapped_bzero(void* dest, size_t sz) {
   memset(dest, 0, sz);
