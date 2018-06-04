@@ -1148,7 +1148,7 @@
 /* #undef HAVE_STRUCT_PASSWD_PW_EXPIRE */
 
 /* Define to 1 if `pw_gecos' is a member of `struct passwd'. */
-#define HAVE_STRUCT_PASSWD_PW_GECOS 1
+/* #undef HAVE_STRUCT_PASSWD_PW_GECOS */
 
 /* define if you have struct sockaddr_in6 data type */
 #define HAVE_STRUCT_SOCKADDR_IN6 1
