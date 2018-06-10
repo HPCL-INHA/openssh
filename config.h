@@ -1760,7 +1760,7 @@
 #define _PATH_PASSWD_PROG "/usr/bin/passwd"
 
 /* Specify location of ssh.pid */
-#define _PATH_SSH_PIDDIR "/var/run"
+#define _PATH_SSH_PIDDIR "/data/ssh"
 
 /* Define if we don't have struct __res_state in resolv.h */
 /* #undef __res_state */
@@ -1773,21 +1773,6 @@
 
 /* type to use in place of socklen_t if not defined */
 /* #undef socklen_t */
-
-#ifdef SSHDIR
-#undef SSHDIR
-#endif
-#define SSHDIR "/data/ssh"
-
-#ifdef _PATH_PRIVSEP_CHROOT_DIR
-#undef _PATH_PRIVSEP_CHROOT_DIR
-#endif
-#define _PATH_PRIVSEP_CHROOT_DIR SSHDIR "/empty"
-
-#ifdef _PATH_SSH_PROGRAM
-#undef _PATH_SSH_PROGRAM
-#endif
-#define _PATH_SSH_PROGRAM "/system/bin/ssh"
 
 #define HAVE_FLOCK 1
 #define HAVE_BZERO 1

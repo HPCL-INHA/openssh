@@ -12,14 +12,15 @@
  * called by a name other than "ssh" or "Secure Shell".
  */
 
-#define ETCDIR				"/etc"
+#define ANDROID_HOME			"/data"
+#define ANDROID_SSHDIR			ANDROID_HOME "/ssh"
 
 #ifndef SSHDIR
-#define SSHDIR				ETCDIR "/ssh"
+#define SSHDIR				ANDROID_SSHDIR
 #endif
 
 #ifndef _PATH_SSH_PIDDIR
-#define _PATH_SSH_PIDDIR		"/var/run"
+#define _PATH_SSH_PIDDIR		ANDROID_SSHDIR
 #endif
 
 /*
@@ -44,7 +45,7 @@
 #define _PATH_DH_MODULI			SSHDIR "/moduli"
 
 #ifndef _PATH_SSH_PROGRAM
-#define _PATH_SSH_PROGRAM		"/usr/bin/ssh"
+#define _PATH_SSH_PROGRAM		"/system/bin/ssh"
 #endif
 
 /*
@@ -57,16 +58,16 @@
  * The directory in user's home directory in which the files reside. The
  * directory should be world-readable (though not all files are).
  */
-#define _PATH_SSH_USER_DIR		".ssh"
+#define _PATH_SSH_USER_DIR		"ssh"
 
 /*
  * Per-user file containing host keys of known hosts.  This file need not be
  * readable by anyone except the user him/herself, though this does not
  * contain anything particularly secret.
  */
-#define _PATH_SSH_USER_HOSTFILE		"~/" _PATH_SSH_USER_DIR "/known_hosts"
+#define _PATH_SSH_USER_HOSTFILE		_PATH_SSH_USER_DIR "/known_hosts"
 /* backward compat for protocol 2 */
-#define _PATH_SSH_USER_HOSTFILE2	"~/" _PATH_SSH_USER_DIR "/known_hosts2"
+#define _PATH_SSH_USER_HOSTFILE2	_PATH_SSH_USER_DIR "/known_hosts2"
 
 /*
  * Name of the default file containing client-side authentication key. This
@@ -154,7 +155,7 @@
 
 /* chroot directory for unprivileged user when UsePrivilegeSeparation=yes */
 #ifndef _PATH_PRIVSEP_CHROOT_DIR
-#define _PATH_PRIVSEP_CHROOT_DIR	"/var/empty"
+#define _PATH_PRIVSEP_CHROOT_DIR	SSHDIR "/empty"
 #endif
 
 /* for passwd change */

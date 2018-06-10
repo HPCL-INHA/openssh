@@ -60,6 +60,7 @@
 
 #include "includes.h"
 #include "glob.h"
+#include "pathnames.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -391,7 +392,7 @@ globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
 #if 0
 		if (issetugid() != 0 || (h = getenv("HOME")) == NULL) {
 #endif
-		if ((getuid() != geteuid()) || (h = getenv("HOME")) == NULL) {
+		if ((getuid() != geteuid()) || (h = ANDROID_HOME) == NULL) {
 			if ((pwd = getpwuid(getuid())) == NULL)
 				return pattern;
 			else

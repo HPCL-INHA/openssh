@@ -1457,7 +1457,7 @@ parse_keytypes:
 			if (*arg != '/' && *arg != '~') {
 				xasprintf(&arg2, "%s/%s",
 				    (flags & SSHCONF_USERCONF) ?
-				    "~/" _PATH_SSH_USER_DIR : SSHDIR, arg);
+				    ANDROID_HOME "/" _PATH_SSH_USER_DIR : SSHDIR, arg);
 			} else
 				arg2 = xstrdup(arg);
 			memset(&gl, 0, sizeof(gl));
@@ -1936,14 +1936,14 @@ fill_default_options(Options * options)
 	if (options->add_keys_to_agent == -1)
 		options->add_keys_to_agent = 0;
 	if (options->num_identity_files == 0) {
-		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_RSA, 0);
-		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_DSA, 0);
+		add_identity_file(options, ANDROID_HOME "/", _PATH_SSH_CLIENT_ID_RSA, 0);
+		add_identity_file(options, ANDROID_HOME "/", _PATH_SSH_CLIENT_ID_DSA, 0);
 #ifdef OPENSSL_HAS_ECC
-		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_ECDSA, 0);
+		add_identity_file(options, ANDROID_HOME "/", _PATH_SSH_CLIENT_ID_ECDSA, 0);
 #endif
-		add_identity_file(options, "~/",
+		add_identity_file(options, ANDROID_HOME "/",
 		    _PATH_SSH_CLIENT_ID_ED25519, 0);
-		add_identity_file(options, "~/", _PATH_SSH_CLIENT_ID_XMSS, 0);
+		add_identity_file(options, ANDROID_HOME "/", _PATH_SSH_CLIENT_ID_XMSS, 0);
 	}
 	if (options->escape_char == -1)
 		options->escape_char = '~';
