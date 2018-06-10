@@ -306,7 +306,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := sshd_config
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/ssh
-LOCAL_SRC_FILES := sshd_config.android
+LOCAL_SRC_FILES := sshd_config
 include $(BUILD_PREBUILT)
 
 ###################### start-ssh ######################
