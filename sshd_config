@@ -91,7 +91,7 @@ HostKey /data/ssh/ssh_host_ed25519_key
 #PermitTTY yes
 #PrintMotd yes
 #PrintLastLog yes
-#TCPKeepAlive yes
+TCPKeepAlive yes
 #UseLogin no
 #PermitUserEnvironment no
 #Compression delayed
