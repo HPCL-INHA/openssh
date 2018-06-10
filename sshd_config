@@ -15,9 +15,11 @@
 #ListenAddress 0.0.0.0
 #ListenAddress ::
 
-#HostKey /etc/ssh/ssh_host_rsa_key
-#HostKey /etc/ssh/ssh_host_ecdsa_key
-#HostKey /etc/ssh/ssh_host_ed25519_key
+Protocol 2
+# HostKeys for protocol version 2
+HostKey /data/ssh/ssh_host_rsa_key
+HostKey /data/ssh/ssh_host_ecdsa_key
+HostKey /data/ssh/ssh_host_ed25519_key
 
 # Ciphers and keying
 #RekeyLimit default none
@@ -36,9 +38,8 @@
 
 #PubkeyAuthentication yes
 
-# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
-# but this is overridden so installations will only check .ssh/authorized_keys
-AuthorizedKeysFile	.ssh/authorized_keys
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile	.ssh/authorized_keys .ssh/authorized_keys2
 
 #AuthorizedPrincipalsFile none
 
@@ -105,6 +106,9 @@ AuthorizedKeysFile	.ssh/authorized_keys
 
 # no default banner path
 #Banner none
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
 
 # override default of no subsystems
 Subsystem	sftp	/usr/libexec/sftp-server
