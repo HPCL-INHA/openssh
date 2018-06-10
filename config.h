@@ -839,7 +839,7 @@
 /* #undef HAVE_OPENLOG_R */
 
 /* Define to 1 if you have the `openpty' function. */
-/* #define HAVE_OPENPTY 1 */
+#define HAVE_OPENPTY 1
 
 /* Define if your ssl headers are included with #include <openssl/header.h> */
 #define HAVE_OPENSSL 1
@@ -890,7 +890,7 @@
 /* #undef HAVE_PSTAT */
 
 /* Define to 1 if you have the <pty.h> header file. */
-/* #define HAVE_PTY_H 1 */
+#define HAVE_PTY_H 1
 
 /* Define to 1 if you have the `pututline' function. */
 #define HAVE_PUTUTLINE 1
