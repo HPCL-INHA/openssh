@@ -119,3 +119,6 @@ Subsystem	sftp	/usr/libexec/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
+# Protocol version 2
+Ciphers aes256-gcm@openssh.com,aes128-ctr,aes256-ctr,aes128-gcm@openssh.com,chacha20-poly1305@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc
