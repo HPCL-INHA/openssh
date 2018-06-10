@@ -49,7 +49,6 @@
 #include "hostfile.h"
 #include "auth.h"
 #include "dispatch.h"
-#include "pathnames.h"
 #include "buffer.h"
 
 #ifdef GSSAPI

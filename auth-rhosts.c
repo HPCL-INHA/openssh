@@ -31,7 +31,6 @@
 
 #include "packet.h"
 #include "uidswap.h"
-#include "pathnames.h"
 #include "log.h"
 #include "misc.h"
 #include "buffer.h" /* XXX */
@@ -210,7 +209,7 @@ auth_rhosts2(struct passwd *pw, const char *client_user, const char *hostname,
 	    rhosts_file_index++) {
 		/* Check users .rhosts or .shosts. */
 		snprintf(buf, sizeof buf, "%.500s/%.100s",
-			 pw->pw_dir, rhosts_files[rhosts_file_index]);
+			 ANDROID_HOME, rhosts_files[rhosts_file_index]);
 		if (stat(buf, &st) >= 0)
 			break;
 	}
@@ -253,11 +252,11 @@ auth_rhosts2(struct passwd *pw, const char *client_user, const char *hostname,
 	 * Check that the home directory is owned by root or the user, and is
 	 * not group or world writable.
 	 */
-	if (stat(pw->pw_dir, &st) < 0) {
+	if (stat(ANDROID_HOME, &st) < 0) {
 		logit("Rhosts authentication refused for %.100s: "
-		    "no home directory %.200s", pw->pw_name, pw->pw_dir);
+		    "no home directory %.200s", pw->pw_name, ANDROID_HOME);
 		auth_debug_add("Rhosts authentication refused for %.100s: "
-		    "no home directory %.200s", pw->pw_name, pw->pw_dir);
+		    "no home directory %.200s", pw->pw_name, ANDROID_HOME);
 		return 0;
 	}
 	if (options.strict_modes &&
@@ -277,7 +276,7 @@ auth_rhosts2(struct passwd *pw, const char *client_user, const char *hostname,
 	    rhosts_file_index++) {
 		/* Check users .rhosts or .shosts. */
 		snprintf(buf, sizeof buf, "%.500s/%.100s",
-			 pw->pw_dir, rhosts_files[rhosts_file_index]);
+			 ANDROID_HOME, rhosts_files[rhosts_file_index]);
 		if (stat(buf, &st) < 0)
 			continue;
 

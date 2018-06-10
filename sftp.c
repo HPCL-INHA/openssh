@@ -61,7 +61,6 @@ typedef void EditLine;
 
 #include "xmalloc.h"
 #include "log.h"
-#include "pathnames.h"
 #include "misc.h"
 #include "utf8.h"
 

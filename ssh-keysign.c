@@ -52,7 +52,6 @@
 #include "authfile.h"
 #include "msg.h"
 #include "canohost.h"
-#include "pathnames.h"
 #include "readconf.h"
 #include "uidswap.h"
 #include "sshkey.h"

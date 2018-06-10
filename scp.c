@@ -114,7 +114,6 @@
 #include "xmalloc.h"
 #include "ssh.h"
 #include "atomicio.h"
-#include "pathnames.h"
 #include "log.h"
 #include "misc.h"
 #include "progressmeter.h"

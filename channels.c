@@ -81,7 +81,6 @@
 #include "canohost.h"
 #include "key.h"
 #include "authfd.h"
-#include "pathnames.h"
 
 /* -- agent forwarding */
 #define	NUM_SOCKS	10

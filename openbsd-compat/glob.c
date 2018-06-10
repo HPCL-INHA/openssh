@@ -60,7 +60,6 @@
 
 #include "includes.h"
 #include "glob.h"
-#include "pathnames.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -396,7 +395,7 @@ globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
 			if ((pwd = getpwuid(getuid())) == NULL)
 				return pattern;
 			else
-				h = pwd->pw_dir;
+				h = ANDROID_HOME;
 		}
 	} else {
 		/*
@@ -405,7 +404,7 @@ globtilde(const Char *pattern, Char *patbuf, size_t patbuf_len, glob_t *pglob)
 		if ((pwd = getpwnam((char*) patbuf)) == NULL)
 			return pattern;
 		else
-			h = pwd->pw_dir;
+			h = ANDROID_HOME;
 	}
 
 	/* Copy the home directory */

@@ -38,7 +38,6 @@
 #include <limits.h>
 
 #include "dh.h"
-#include "pathnames.h"
 #include "log.h"
 #include "misc.h"
 #include "ssherr.h"

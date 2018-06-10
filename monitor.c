@@ -753,7 +753,7 @@ mm_answer_pwnamallow(int sock, Buffer *m)
 #ifdef HAVE_STRUCT_PASSWD_PW_CLASS
 	buffer_put_cstring(m, pwent->pw_class);
 #endif
-	buffer_put_cstring(m, pwent->pw_dir);
+	buffer_put_cstring(m, ANDROID_HOME);
 	buffer_put_cstring(m, pwent->pw_shell);
 
  out:

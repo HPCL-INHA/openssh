@@ -51,7 +51,6 @@
 #include "misc.h"
 #include "xmalloc.h"
 #include "atomicio.h"
-#include "pathnames.h"
 #include "log.h"
 #include "buffer.h"
 

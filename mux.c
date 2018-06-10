@@ -67,7 +67,6 @@
 #include "log.h"
 #include "ssh.h"
 #include "ssh2.h"
-#include "pathnames.h"
 #include "misc.h"
 #include "match.h"
 #include "buffer.h"

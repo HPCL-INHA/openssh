@@ -103,7 +103,6 @@
 #include "kex.h"
 #include "myproposal.h"
 #include "authfile.h"
-#include "pathnames.h"
 #include "atomicio.h"
 #include "canohost.h"
 #include "hostfile.h"

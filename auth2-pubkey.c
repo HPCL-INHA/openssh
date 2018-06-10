@@ -54,7 +54,6 @@
 #include "sshkey.h"
 #include "hostfile.h"
 #include "auth.h"
-#include "pathnames.h"
 #include "uidswap.h"
 #include "auth-options.h"
 #include "canohost.h"
@@ -450,7 +449,7 @@ match_principals_command(struct ssh *ssh, struct passwd *user_pw,
 	for (i = 1; i < ac; i++) {
 		tmp = percent_expand(av[i],
 		    "u", user_pw->pw_name,
-		    "h", user_pw->pw_dir,
+		    "h", ANDROID_HOME,
 		    "t", sshkey_ssh_name(key),
 		    "T", sshkey_ssh_name(cert->signature_key),
 		    "f", key_fp,
@@ -905,7 +904,7 @@ user_key_command_allowed2(struct ssh *ssh, struct passwd *user_pw,
 	for (i = 1; i < ac; i++) {
 		tmp = percent_expand(av[i],
 		    "u", user_pw->pw_name,
-		    "h", user_pw->pw_dir,
+		    "h", ANDROID_HOME,
 		    "t", sshkey_ssh_name(key),
 		    "f", key_fp,
 		    "k", keytext,

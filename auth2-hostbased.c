@@ -47,7 +47,6 @@
 #include "ssh-gss.h"
 #endif
 #include "monitor_wrap.h"
-#include "pathnames.h"
 #include "ssherr.h"
 #include "match.h"
 

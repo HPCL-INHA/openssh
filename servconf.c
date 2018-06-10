@@ -49,7 +49,6 @@
 #include "misc.h"
 #include "servconf.h"
 #include "compat.h"
-#include "pathnames.h"
 #include "cipher.h"
 #include "key.h"
 #include "kex.h"

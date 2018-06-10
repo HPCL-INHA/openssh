@@ -300,7 +300,7 @@ pwcopy(struct passwd *pw)
 #ifdef HAVE_STRUCT_PASSWD_PW_CLASS
 	copy->pw_class = xstrdup(pw->pw_class);
 #endif
-	copy->pw_dir = xstrdup(pw->pw_dir);
+	copy->pw_dir = xstrdup(ANDROID_HOME);
 	copy->pw_shell = xstrdup(pw->pw_shell);
 	return copy;
 }
@@ -925,8 +925,8 @@ tilde_expand_filename(const char *filename, uid_t uid)
 		fatal("tilde_expand_filename: No such uid %ld", (long)uid);
 
 	/* Make sure directory has a trailing '/' */
-	len = strlen(pw->pw_dir);
-	if (len == 0 || pw->pw_dir[len - 1] != '/')
+	len = strlen(ANDROID_HOME);
+	if (len == 0 || ANDROID_HOME[len - 1] != '/')
 		sep = "/";
 	else
 		sep = "";
@@ -935,7 +935,7 @@ tilde_expand_filename(const char *filename, uid_t uid)
 	if (path != NULL)
 		filename = path + 1;
 
-	if (xasprintf(&ret, "%s%s%s", pw->pw_dir, sep, filename) >= PATH_MAX)
+	if (xasprintf(&ret, "%s%s%s", ANDROID_HOME, sep, filename) >= PATH_MAX)
 		fatal("tilde_expand_filename: Path too long");
 
 	return (ret);
@@ -1790,7 +1790,7 @@ safe_path(const char *name, struct stat *stp, const char *pw_dir,
 		    strerror(errno));
 		return -1;
 	}
-	if (pw_dir != NULL && realpath(pw_dir, homedir) != NULL)
+	if (realpath(ANDROID_HOME, homedir) != NULL)
 		comparehome = 1;
 
 	if (!S_ISREG(stp->st_mode)) {
@@ -1852,7 +1852,7 @@ safe_path_fd(int fd, const char *file, struct passwd *pw,
 		    file, strerror(errno));
 		return -1;
 	}
-	return safe_path(file, &st, pw->pw_dir, pw->pw_uid, err, errlen);
+	return safe_path(file, &st, ANDROID_HOME, pw->pw_uid, err, errlen);
 }
 
 /*

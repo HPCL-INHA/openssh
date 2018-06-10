@@ -104,7 +104,7 @@ auth_secure_path(const char *name, struct stat *stp, const char *pw_dir,
 		    strerror(errno));
 		return -1;
 	}
-	if (pw_dir != NULL && realpath(pw_dir, homedir) != NULL)
+	if (realpath(ANDROID_HOME, homedir) != NULL)
 		comparehome = 1;
 
 	if (!S_ISREG(stp->st_mode)) {

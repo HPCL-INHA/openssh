@@ -32,7 +32,6 @@
 
 #include <openssl/rsa.h>
 
-#include "pathnames.h"
 #include "xmalloc.h"
 #include "buffer.h"
 #include "log.h"

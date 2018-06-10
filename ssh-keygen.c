@@ -44,7 +44,6 @@
 #include "authfile.h"
 #include "uuencode.h"
 #include "sshbuf.h"
-#include "pathnames.h"
 #include "log.h"
 #include "misc.h"
 #include "match.h"
@@ -284,7 +283,7 @@ ask_filename(struct passwd *pw, const char *prompt)
 		}
 	}
 	snprintf(identity_file, sizeof(identity_file),
-	    "%s/%s", pw->pw_dir, name);
+	    "%s/%s", ANDROID_HOME, name);
 	printf("%s (%s): ", prompt, identity_file);
 	fflush(stdout);
 	if (fgets(buf, sizeof(buf), stdin) == NULL)
@@ -2732,7 +2731,7 @@ main(int argc, char **argv)
 
 	/* Create ~/.ssh directory if it doesn't already exist. */
 	snprintf(dotsshdir, sizeof dotsshdir, "%s/%s",
-	    pw->pw_dir, _PATH_SSH_USER_DIR);
+	    ANDROID_HOME, _PATH_SSH_USER_DIR);
 	if (strstr(identity_file, dotsshdir) != NULL) {
 		if (stat(dotsshdir, &st) < 0) {
 			if (errno != ENOENT) {

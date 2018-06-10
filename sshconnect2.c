@@ -67,7 +67,6 @@
 #include "dispatch.h"
 #include "canohost.h"
 #include "msg.h"
-#include "pathnames.h"
 #include "uidswap.h"
 #include "hostfile.h"
 #include "ssherr.h"

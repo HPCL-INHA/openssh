@@ -425,7 +425,7 @@ expand_authorized_keys(const char *filename, struct passwd *pw)
 	char *file, ret[PATH_MAX];
 	int i;
 
-	file = percent_expand(filename, "h", pw->pw_dir,
+	file = percent_expand(filename, "h", ANDROID_HOME,
 	    "u", pw->pw_name, (char *)NULL);
 
 	/*
@@ -435,7 +435,7 @@ expand_authorized_keys(const char *filename, struct passwd *pw)
 	if (*file == '/')
 		return (file);
 
-	i = snprintf(ret, sizeof(ret), "%s/%s", pw->pw_dir, file);
+	i = snprintf(ret, sizeof(ret), "%s/%s", ANDROID_HOME, file);
 	if (i < 0 || (size_t)i >= sizeof(ret))
 		fatal("expand_authorized_keys: path too long");
 	free(file);
@@ -929,7 +929,7 @@ subprocess(const char *tag, struct passwd *pw, const char *command,
 		child_set_env(&child_env, &envsize, "PATH", _PATH_STDPATH);
 		child_set_env(&child_env, &envsize, "USER", pw->pw_name);
 		child_set_env(&child_env, &envsize, "LOGNAME", pw->pw_name);
-		child_set_env(&child_env, &envsize, "HOME", pw->pw_dir);
+		child_set_env(&child_env, &envsize, "HOME", ANDROID_HOME);
 		if ((cp = getenv("LANG")) != NULL)
 			child_set_env(&child_env, &envsize, "LANG", cp);
 

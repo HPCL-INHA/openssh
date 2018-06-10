@@ -42,7 +42,6 @@
 
 #include "xmalloc.h"
 #include "misc.h"
-#include "pathnames.h"
 #include "log.h"
 #include "ssh.h"
 #include "uidswap.h"

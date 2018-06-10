@@ -92,7 +92,6 @@
 #include "key.h"
 #include "authfd.h"
 #include "authfile.h"
-#include "pathnames.h"
 #include "dispatch.h"
 #include "clientloop.h"
 #include "log.h"
@@ -520,7 +519,7 @@ process_config_files(const char *host_name, struct passwd *pw, int post_canon)
 			fatal("Can't open user config file %.100s: "
 			    "%.100s", config, strerror(errno));
 	} else {
-		r = snprintf(buf, sizeof buf, "%s/%s", pw->pw_dir,
+		r = snprintf(buf, sizeof buf, "%s/%s", ANDROID_HOME,
 		    _PATH_SSH_USER_CONFFILE);
 		if (r > 0 && (size_t)r < sizeof(buf))
 			(void)read_config_file(buf, pw, host, host_name,
@@ -1292,7 +1291,7 @@ main(int ac, char **av)
 		options.remote_command = percent_expand(cp,
 		    "C", conn_hash_hex,
 		    "L", shorthost,
-		    "d", pw->pw_dir,
+		    "d", ANDROID_HOME,
 		    "h", host,
 		    "l", thishost,
 		    "n", host_arg,
@@ -1468,8 +1467,8 @@ main(int ac, char **av)
 	 * directory if it doesn't already exist.
 	 */
 	if (config == NULL) {
-		r = snprintf(buf, sizeof buf, "%s%s%s", pw->pw_dir,
-		    strcmp(pw->pw_dir, "/") ? "/" : "", _PATH_SSH_USER_DIR);
+		r = snprintf(buf, sizeof buf, "%s%s%s", ANDROID_HOME,
+		    strcmp(ANDROID_HOME, "/") ? "/" : "", _PATH_SSH_USER_DIR);
 		if (r > 0 && (size_t)r < sizeof(buf) && stat(buf, &st) < 0) {
 #ifdef WITH_SELINUX
 			ssh_selinux_setfscreatecon(buf);
@@ -1493,7 +1492,7 @@ main(int ac, char **av)
 		} else {
 			p = tilde_expand_filename(options.identity_agent,
 			    original_real_uid);
-			cp = percent_expand(p, "d", pw->pw_dir,
+			cp = percent_expand(p, "d", ANDROID_HOME,
 			    "u", pw->pw_name, "l", thishost, "h", host,
 			    "r", options.user, (char *)NULL);
 			setenv(SSH_AUTHSOCKET_ENV_NAME, cp, 1);
@@ -1898,7 +1897,7 @@ ssh_session2(struct ssh *ssh, struct passwd *pw)
 		options.local_command = percent_expand(cp,
 		    "C", conn_hash_hex,
 		    "L", shorthost,
-		    "d", pw->pw_dir,
+		    "d", ANDROID_HOME,
 		    "h", host,
 		    "l", thishost,
 		    "n", host_arg,
@@ -2052,7 +2051,7 @@ load_public_identity_files(struct passwd *pw)
 		}
 		cp = tilde_expand_filename(options.identity_files[i],
 		    original_real_uid);
-		filename = percent_expand(cp, "d", pw->pw_dir,
+		filename = percent_expand(cp, "d", ANDROID_HOME,
 		    "u", pw->pw_name, "l", thishost, "h", host,
 		    "r", options.user, (char *)NULL);
 		free(cp);
@@ -2098,7 +2097,7 @@ load_public_identity_files(struct passwd *pw)
 	for (i = 0; i < options.num_certificate_files; i++) {
 		cp = tilde_expand_filename(options.certificate_files[i],
 		    original_real_uid);
-		filename = percent_expand(cp, "d", pw->pw_dir,
+		filename = percent_expand(cp, "d", ANDROID_HOME,
 		    "u", pw->pw_name, "l", thishost, "h", host,
 		    "r", options.user, (char *)NULL);
 		free(cp);
