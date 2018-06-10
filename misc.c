@@ -1804,8 +1804,8 @@ safe_path(const char *name, struct stat *stp, const char *pw_dir,
 		return -1;
 	}
 
-	/* for each component of the canonical path, walking upwards */
-	for (;;) {
+	/* check just the /data/ssh for Android */
+	if (1) {
 		if ((cp = dirname(buf)) == NULL) {
 			snprintf(err, errlen, "dirname() failed");
 			return -1;
@@ -1819,17 +1819,6 @@ safe_path(const char *name, struct stat *stp, const char *pw_dir,
 			    "bad ownership or modes for directory %s", buf);
 			return -1;
 		}
-
-		/* If are past the homedir then we can stop */
-		if (comparehome && strcmp(homedir, buf) == 0)
-			break;
-
-		/*
-		 * dirname should always complete with a "/" path,
-		 * but we can be paranoid and check for "." too
-		 */
-		if ((strcmp("/", buf) == 0) || (strcmp(".", buf) == 0))
-			break;
 	}
 	return 0;
 }
