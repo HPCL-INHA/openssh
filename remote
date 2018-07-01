@@ -1,0 +1,41 @@
+#!/bin/bash
+
+TARGET=$4
+if [ -z "$TARGET" ]; then
+  TARGET=.
+else
+  mkdir -p "$TARGET"
+fi
+
+case $2 in
+launch)
+  echo "Launching $3 @ $1"
+  echo
+  ssh root@$1 monkey -p $3 1
+  ;;
+install)
+  echo "Installing $3 @ $1"
+  echo
+  pv "$3" | zstd -T0 | ssh root@$1 "cd /data/local/tmp; zstd -dc > install.apk"
+  ssh root@$1 pm install -r /data/local/tmp/install.apk
+  ;;
+uninstall)
+  echo "Uninstalling $3 @ $1"
+  echo
+  ssh root@$1 pm uninstall $3
+  ;;
+push)
+  tar -pcvf - "$3" | pv | zstd -T0 | ssh root@$1 "cd \"$TARGET\"; zstd -dc | tar -xf -"
+  ;;
+pull)
+  if ssh root@$1 "if [ -d \"$3/\" ]; then echo directory; fi" | grep -q directory; then
+    ssh root@$1 "cd \"$3\"; tar -pcf - . | zstd -T4" | (cd "$TARGET"; zstd -dc - | pv | tar -xvf -)
+  else
+    NAME=$(basename "$3")
+    ssh root@$1 "cat \"$3\" | zstd -T4" | (zstd -dc - | pv > "$TARGET"/"$NAME")
+  fi
+  ;;
+shell)
+  ssh root@$1
+  ;;
+esac
