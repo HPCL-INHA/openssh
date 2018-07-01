@@ -1049,6 +1049,25 @@ do_setup_env(struct ssh *ssh, Session *s, const char *shell)
 
 	/* Normal systems set SHELL by default. */
 	child_set_env(&env, &envsize, "SHELL", shell);
+#else
+	extern char **environ;
+	char *env_s = *environ;
+	char env_name[512], *env_val = NULL;
+
+	/* Copy Android environment variables to SSH sessions */
+	for (i = 0; env_s; i++) {
+		memset(env_name, 0, sizeof(env_name));
+		strncpy(env_name, env_s, strchr(env_s, '=') - env_s);
+		env_val = strstr(env_s, "=") + 1;
+
+		if (!strncmp(env_name, "ANDROID_", 8) ||
+		    !strcmp(env_name, "ASEC_MOUNTPOINT") ||
+		    !strcmp(env_name, "BOOTCLASSPATH") ||
+		    strstr(env_name, "STORAGE"))
+			child_set_env(&env, &envsize, env_name, env_val);
+
+		env_s = *(environ + i);
+	}
 #endif
 
 	if (getenv("TZ"))
