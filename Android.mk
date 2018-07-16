@@ -317,3 +317,13 @@ LOCAL_MODULE := start-ssh
 LOCAL_MODULE_CLASS := EXECUTABLES
 LOCAL_SRC_FILES := start-ssh
 include $(BUILD_PREBUILT)
+
+###################### sshd.rc ######################
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE := sshd.rc
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/init
+LOCAL_SRC_FILES := $(LOCAL_MODULE)
+include $(BUILD_PREBUILT)
