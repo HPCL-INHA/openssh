@@ -1,5 +1,9 @@
 LOCAL_PATH:= $(call my-dir)
 
+COMMON_CFLAGS := \
+    -O3 -Wno-unused-parameter \
+    -Wno-pointer-sign -Wno-sign-compare -Wno-unused-variable
+
 ###################### libssh ######################
 include $(CLEAR_VARS)
 
@@ -136,9 +140,7 @@ LOCAL_SHARED_LIBRARIES += libssl libcrypto libdl libz
 
 LOCAL_MODULE := libssh
 
-LOCAL_CFLAGS+=-O3 -Wno-unused-parameter
-
-LOCAL_CFLAGS += -DGCE_PLATFORM_SDK_VERSION=$(PLATFORM_SDK_VERSION)
+LOCAL_CFLAGS += $(COMMON_CFLAGS) -DGCE_PLATFORM_SDK_VERSION=$(PLATFORM_SDK_VERSION)
 ifneq ($(filter gce_x86 calypso, $(TARGET_DEVICE)),)
 LOCAL_CFLAGS += -DANDROID_GCE
 endif
@@ -157,8 +159,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := ssh
 
-
-LOCAL_CFLAGS += -Wno-unused-parameter
+LOCAL_CFLAGS += $(COMMON_CFLAGS)
 
 LOCAL_C_INCLUDES := \
     external/zlib \
@@ -180,7 +181,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := sftp
 
-LOCAL_CFLAGS += -Wno-unused-parameter
+LOCAL_CFLAGS += $(COMMON_CFLAGS)
 
 LOCAL_C_INCLUDES := \
     external/zlib \
@@ -202,7 +203,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := scp
 
-LOCAL_CFLAGS += -Wno-unused-parameter
+LOCAL_CFLAGS += $(COMMON_CFLAGS)
 
 LOCAL_C_INCLUDES := \
     external/zlib \
@@ -266,7 +267,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := sshd
 
-LOCAL_CFLAGS += -Wno-unused-parameter
+LOCAL_CFLAGS += $(COMMON_CFLAGS)
 
 LOCAL_C_INCLUDES := \
     external/zlib \
@@ -288,7 +289,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_MODULE := ssh-keygen
 
-LOCAL_CFLAGS += -Wno-unused-parameter
+LOCAL_CFLAGS += $(COMMON_CFLAGS)
 
 LOCAL_C_INCLUDES := \
     external/zlib \
